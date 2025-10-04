@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+
+
+ import React, { useEffect, useState } from "react";
 import { Play, Globe, Users, ChevronDown, Mic2, Languages, Video, Award } from "lucide-react";
 
 function Home() {
