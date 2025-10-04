@@ -1,0 +1,669 @@
+.home-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: visible;
+  background: linear-gradient(135deg, #1e1e20 0%, #2c2c2e 50%, #252527 100%);
+  padding: 4rem 2rem 2rem;
+  scroll-margin-top: 0;
+}
+
+.home-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Geometric shapes scattered in background */
+.geometric-shape {
+  position: absolute;
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape-1 {
+  top: 15%;
+  left: 5%;
+  width: 50px;
+  height: 50px;
+  background: #f9a533;
+  border-radius: 50%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  top: 25%;
+  right: 15%;
+  width: 35px;
+  height: 35px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  animation-delay: 1.5s;
+}
+
+.shape-3 {
+  bottom: 20%;
+  left: 10%;
+  width: 45px;
+  height: 45px;
+  background: #f9a533;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation-delay: 3s;
+}
+
+.shape-4 {
+  bottom: 30%;
+  right: 25%;
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  border-radius: 50%;
+  animation-delay: 4.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+  }
+}
+
+/* Dots pattern on sides */
+.dots-pattern {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-columns: repeat(3, 6px);
+  gap: 10px;
+  opacity: 0.25;
+}
+
+.dots-pattern::before,
+.dots-pattern::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #f9a533;
+  border-radius: 50%;
+}
+
+.dots-left {
+  left: 2%;
+}
+
+.dots-right {
+  right: 2%;
+}
+
+/* Microphone container with larger size and aligned with text */
+.home-microphone-container {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px;
+  height: auto;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.microphone-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(249, 165, 51, 0.4));
+  animation: rotateInPlace 12s ease-in-out infinite;
+}
+
+@keyframes rotateInPlace {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+.home-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.home-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1.5rem;
+}
+
+/* Content aligned to left */
+.home-content {
+  text-align: left;
+  animation: fadeInUp 0.8s ease-out;
+  max-width: 650px;
+  position: relative;
+}
+
+/* Colored dots on left side of content */
+.color-dots {
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #f9a533;
+  border-radius: 50%;
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+.dot:nth-child(2n) {
+  background: rgba(249, 165, 51, 0.7);
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Compact title with vertical stacking */
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.title-highlight {
+  color: #f9a533;
+  font-weight: 800;
+}
+
+@media (min-width: 640px) {
+  .home-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-title {
+    font-size: 3.5rem;
+  }
+}
+
+.home-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  max-width: 550px;
+}
+
+.home-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+  justify-content: flex-start;
+}
+
+/* Updated button style */
+.home-btn-primary {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid #f9a533;
+  cursor: pointer;
+}
+
+.home-btn-primary:hover {
+  background-color: #f9a533;
+  color: #1e1e20;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 165, 51, 0.4);
+}
+
+/* Client logos / portfolio */
+.home-logos {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.home-logos img {
+  width: 90px;
+  height: auto;
+  filter: grayscale(50%) opacity(0.8);
+  transition: all 0.3s ease;
+}
+
+.home-logos img:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+  .home-microphone-container {
+    right: 5%;
+    width: 300px;
+    height: auto;
+  }
+
+  .color-dots {
+    left: -35px;
+  }
+
+  .home-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-section {
+    padding: 3rem 1rem;
+  }
+
+  .home-grid {
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-content {
+    text-align: center;
+    max-width: 90%;
+  }
+
+  .home-microphone-container {
+    position: relative;
+    right: auto;
+    margin: 1rem auto;
+    width: 250px;
+  }
+
+  .color-dots {
+    display: none;
+  }
+
+  .home-buttons {
+    justify-content: center;
+  }
+
+  .home-title {
+    font-size: 1.8rem;
+  }
+
+  .home-logos {
+    justify-content: center;
+  }
+}
+/* ... باقي الكود عندك بدون تغيير ... */
+
+/* حركة الميكروفون يمين شمال */
+@keyframes floatSide {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(25px);
+  }
+}
+
+.microphone-image {
+  width: 120%; /* تكبير الصورة */
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(249, 165, 51, 0.4));
+  animation: floatSide 10s ease-in-out infinite; /* حركة يمين شمال */
+}
+
+/* تعديل العنوان */
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.title-highlight {
+  color: #f9a533;
+  font-weight: 800;
+}
+
+@media (min-width: 640px) {
+  .home-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-title {
+    font-size: 3.5rem;
+  }
+}
+/* Dots background */
+.color-dots {
+  position: absolute;
+  inset: 0; /* يغطي كامل الخلفية */
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #f9a533;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: moveDot 12s ease-in-out infinite;
+}
+
+/* حركة عشوائية للنقاط */
+@keyframes moveDot {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(40px, -40px) scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+}
+
+/* تكبير المايكروفون */
+.microphone-image {
+  width: 160%; /* أكبر من قبل */
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(249, 165, 51, 0.4));
+  animation: floatSide 10s ease-in-out infinite;
+}
+/* ميكروفونات صغيرة متناثرة */
+.mic-decor {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mic-icon {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 8px rgba(249, 165, 51, 0.5));
+  animation: floatMic 12s ease-in-out infinite;
+}
+
+/* حركة الميكروفونات الصغيرة */
+@keyframes floatMic {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(10deg);
+  }
+}
+/* ميكروفونات صغيرة تتحرك يمين/يسار */
+.mic-decor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.mic-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  opacity: 0.6;
+  animation: floatMic 6s ease-in-out infinite;
+}
+
+.mic-icon.anim1 { top: -40px; left: -60px; animation-delay: 0s; }
+.mic-icon.anim2 { top: 30px; right: -70px; animation-delay: 1.5s; }
+.mic-icon.anim3 { bottom: -50px; left: 20px; animation-delay: 3s; }
+.mic-icon.anim4 { top: 100px; left: -90px; animation-delay: 4.5s; }
+
+@keyframes floatMic {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(20px) translateY(-10px) rotate(15deg); }
+}
+
+/* Home Logos */
+.home-logos {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-logos img {
+  width: 90px;
+  height: auto;
+  filter: grayscale(50%) opacity(0.8);
+  transition: all 0.3s ease;
+}
+
+.home-logos img:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+/* Home Title أفقي */
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  text-align: center;
+}
+/* Home Title أفقي ومتوسط */
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  text-align: center; /* نص متوسط */
+}
+
+/* Home Description */
+.home-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 1rem auto 2rem auto;
+  max-width: 600px;
+  text-align: center; /* نص متوسط */
+}
+
+/* Home Buttons */
+.home-buttons {
+  display: flex;
+  justify-content: center; /* زر متوسط */
+  margin-bottom: 2rem;
+}
+
+/* Client Logos */
+.home-logos {
+  display: flex;
+  justify-content: center; /* ترتيب جنب بعض */
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.home-logos img {
+  width: 120px;
+  height: auto;
+  filter: grayscale(20%) opacity(0.9);
+  transition: all 0.3s ease;
+}
+
+.home-logos img:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+/* Microphone decoration */
+.mic-decor .mic-icon {
+  width: 40px;
+  height: 40px;
+  opacity: 0.6;
+  position: absolute;
+  animation: floatMic 6s ease-in-out infinite;
+}
+
+.mic-icon.anim1 { top: -40px; left: -60px; animation-delay: 0s; }
+.mic-icon.anim2 { top: 30px; right: -70px; animation-delay: 1.5s; }
+.mic-icon.anim3 { bottom: -50px; left: 20px; animation-delay: 3s; }
+.mic-icon.anim4 { top: 100px; left: -90px; animation-delay: 4.5s; }
+
+@keyframes floatMic {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(20px) translateY(-10px) rotate(15deg); }
+}
+/* Microphone decoration - صغيرة وقريبة من الكبير */
+.mic-decor .mic-icon {
+  width: 35px;
+  height: 35px;
+  opacity: 0.6;
+  position: absolute;
+  animation: floatMic 5s ease-in-out infinite;
+}
+
+.mic-icon.anim1 { top: -20px; left: -40px; animation-delay: 0s; }
+.mic-icon.anim2 { top: 10px; right: -50px; animation-delay: 1s; }
+.mic-icon.anim3 { bottom: -20px; left: 30px; animation-delay: 2s; }
+.mic-icon.anim4 { top: 60px; left: -50px; animation-delay: 3s; }
+
+@keyframes floatMic {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(10px) translateY(-5px) rotate(10deg); }
+}
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  text-align: center; /* للنص في الوسط */
+}
+
+.title-highlight {
+  color: #f9a533;
+  font-weight: 800;
+  white-space: nowrap; /* اجعل الكلمات على نفس السطر */
+}
+.mic-waves {
+  position: absolute;
+  left: -60px; /* جهة المايك */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 3;
+}
+
+.wave {
+  width: 0px;
+  height: 2px;
+  background: #f9a533;
+  opacity: 0.7;
+  animation: waveAnim 1.5s ease-in-out infinite;
+  border-radius: 2px;
+}
+
+.wave-1 { animation-delay: 0s; }
+.wave-2 { animation-delay: 0.2s; }
+.wave-3 { animation-delay: 0.4s; }
+.wave-4 { animation-delay: 0.6s; }
+.wave-5 { animation-delay: 0.8s; }
+
+@keyframes waveAnim {
+  0%, 100% { width: 0; opacity: 0.5; }
+  50% { width: 60px; opacity: 1; }
+}
+.mic-waves {
+  position: absolute;
+  left: -80px; /* بداية من جهة المايك */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 3;
+}
+
+.wave {
+  width: 0px;
+  height: 2px;
+  background: #f9a533;
+  border-radius: 2px;
+  opacity: 0.6;
+  animation: waveAnim 1.5s ease-in-out infinite;
+}
+
+.wave-1 { animation-delay: 0s; }
+.wave-2 { animation-delay: 0.2s; }
+.wave-3 { animation-delay: 0.4s; }
+.wave-4 { animation-delay: 0.6s; }
+.wave-5 { animation-delay: 0.8s; }
+
+@keyframes waveAnim {
+  0% {
+    width: 0;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  50% {
+    width: 80px; /* طول الموجة */
+    opacity: 1;
+    transform: translateX(30px); /* تتحرك بعيد عن المايك */
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+    transform: translateX(60px);
+  }
+}
