@@ -1,10 +1,40 @@
+import React, { useEffect, useState } from "react";
+import { Play, ChevronDown, Mic2, Languages, Video, Globe } from "lucide-react";
 
+// The Counter component remains the same
+function Counter({ target, label }) {
+  const [count, setCount] = useState(0);
 
- import React, { useEffect, useState } from "react";
-import { Play, Globe, Users, ChevronDown, Mic2, Languages, Video, Award } from "lucide-react";
+  useEffect(() => {
+    let start = 0;
+    const end = parseInt(target, 10);
+    if (isNaN(end) || end === 0) return;
+    
+    const duration = 2000;
+    const stepTime = Math.max(1, Math.floor(duration / end));
+
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start >= end) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return (
+    <div className="text-center">
+      <div className="text-4xl md:text-5xl font-bold text-[#f9a533]">{count}{label === "Quality" ? "%" : "+"}</div>
+      <div className="text-sm md:text-base text-gray-400 mt-2">{label}</div>
+    </div>
+  );
+}
 
 function Home() {
   const [isVisible, setIsVisible] = useState(false);
+  const [hoveredIcon, setHoveredIcon] = useState(null);
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -12,18 +42,42 @@ function Home() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  const scrollToHome = () => {
-    const element = document.getElementById("home");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
+  
   useEffect(() => {
-    scrollToHome();
+    window.scrollTo(0, 0);
     setIsVisible(true);
   }, []);
+
+  const floatingIcons = [
+    {
+      icon: Languages,
+      position: "top-0 left-1/4",
+      delay: "0s",
+      color: "text-[#f9a533]",
+      description: "Translation & Subtitling",
+    },
+    {
+      icon: Mic2,
+      position: "top-1/4 right-0",
+      delay: "0.5s",
+      color: "text-white",
+      description: "Voice Over & Dubbing",
+    },
+    {
+      icon: Video,
+      position: "bottom-1/4 left-0",
+      delay: "1s",
+      color: "text-[#f9a533]",
+      description: "Video Production",
+    },
+    {
+      icon: Globe,
+      position: "bottom-0 right-1/4",
+      delay: "1.5s",
+      color: "text-white",
+      description: "Global Reach",
+    },
+  ];
 
   return (
     <section
@@ -54,26 +108,23 @@ function Home() {
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[calc(100vh-8rem)]">
-          {/* Left Content - Text */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-8rem)]">
+          {/* Left Content */}
           <div
             className={`space-y-6 order-1 lg:order-1 transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             }`}
           >
-            {/* Main Heading */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="text-white inline">Your Partner in </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9a533] via-[#ffc166] to-[#f9a533] animate-gradient inline">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9a533] via-[#ffc166] to-[#f9a533] animate-gradient">
                 Production
               </span>
-              <span className="text-white ml-2 inline">&</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffc166] via-[#f9a533] to-[#ffc166] animate-gradient ml-2 inline">
+              <span className="text-white mx-2">&</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffc166] via-[#f9a533] to-[#ffc166] animate-gradient">
                 Translation Excellence
               </span>
             </h1>
 
-            {/* Description */}
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-xl">
               Connecting worlds through powerful and accurate{" "}
               <span className="text-[#f9a533] font-semibold">translation</span>,{" "}
@@ -81,7 +132,6 @@ function Home() {
               <span className="text-[#f9a533] font-semibold">dubbing</span> services.
             </p>
 
-            {/* Get a Quote Button */}
             <div className="mt-2">
               <button
                 onClick={scrollToContact}
@@ -95,101 +145,78 @@ function Home() {
               </button>
             </div>
 
-            {/* Client Icons - تحت الزر مباشرة */}
-            <div className="pt-4">
-              <div className="grid grid-cols-4 gap-4 md:gap-8 items-center opacity-40 hover:opacity-70 transition-all duration-500 -mt-2">
-                <img
-                  src="engineer_2705141.png"
-                  alt="Warner Bros"
-                  className="h-6 md:h-8 object-contain filter brightness-0 invert"
-                />
-                <img
-                  src="competitive_10266484.png"
-                  alt="Universal Pictures"
-                  className="h-6 md:h-8 object-contain filter brightness-0 invert"
-                />
-                <img
-                  src="stamping_11702943.png"
-                  alt="Paramount Pictures"
-                  className="h-6 md:h-8 object-contain filter brightness-0 invert"
-                />
-                <img
-                  src="ribbon_15395691.png"
-                  alt="20th Century Studios"
-                  className="h-6 md:h-8 object-contain filter brightness-0 invert"
-                />
-              </div>
-            </div>
-
-            {/* Cards */}
-            <div className="grid grid-cols-3 gap-4 md:gap-6 py-6 -mt-4">
-              <div className="text-center p-4 bg-[#414042]/50 backdrop-blur-sm rounded-xl border border-[#f9a533]/20 hover:border-[#f9a533]/50 transition-all duration-300">
-                <div className="text-2xl md:text-3xl font-bold text-[#f9a533]">500+</div>
-                <div className="text-xs md:text-sm text-gray-400 mt-1">Projects</div>
-              </div>
-              <div className="text-center p-4 bg-[#414042]/50 backdrop-blur-sm rounded-xl border border-[#f9a533]/20 hover:border-[#f9a533]/50 transition-all duration-300">
-                <div className="text-2xl md:text-3xl font-bold text-[#f9a533]">50+</div>
-                <div className="text-xs md:text-sm text-gray-400 mt-1">Languages</div>
-              </div>
-              <div className="text-center p-4 bg-[#414042]/50 backdrop-blur-sm rounded-xl border border-[#f9a533]/20 hover:border-[#f9a533]/50 transition-all duration-300">
-                <div className="text-2xl md:text-3xl font-bold text-[#f9a533]">100%</div>
-                <div className="text-xs md:text-sm text-gray-400 mt-1">Quality</div>
-              </div>
+            {/* Stats Counters */}
+            <div className="grid grid-cols-3 gap-6 py-6">
+              <Counter target={500} label="Projects" />
+              <Counter target={50} label="Languages" />
+              <Counter target={100} label="Quality" />
             </div>
           </div>
 
-          {/* Right Content - Clapperboard */}
+          {/* Right Content */}
           <div
             className={`relative order-2 lg:order-2 transition-all duration-1000 delay-300 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
             }`}
           >
-            <div className="relative w-full max-w-lg mx-auto mt-6">
-              <div className="relative z-10 flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-[450px] h-[450px] bg-gradient-to-r from-[#f9a533]/20 via-[#f9a533]/30 to-[#f9a533]/20 rounded-full blur-3xl animate-pulse" />
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {[...Array(4)].map((_, i) => (
+            <div className="relative w-full h-[450px] flex items-center justify-center">
+              {/* Glow Background */}
+              <div className="absolute w-full h-full bg-gradient-to-r from-[#f9a533]/20 via-[#f9a533]/30 to-[#f9a533]/20 rounded-full blur-3xl animate-pulse" />
+              
+              {/* Pulsing Rings */}
+              {[...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-full h-full border-2 border-[#f9a533]/20 rounded-full"
+                  style={{
+                    animation: `ping ${2 + i * 0.5}s cubic-bezier(0, 0, 0.2, 1) infinite`,
+                    animationDelay: `${i * 0.4}s`,
+                  }}
+                />
+              ))}
+
+              {/* === Main Central Image (Restored) === */}
+              {/* The user requested to restore the original clapperboard image. */}
+              <div className="relative z-20 transform scale-x-[-1] hover:scale-x-[-1.05] hover:scale-y-105 transition-transform duration-500">
+                <img
+                  src="/freepik__the-style-is-candid-image-photography-with-natural__83762-removebg-preview.png"
+                  alt="Clapperboard for production services"
+                  className="w-[350px] h-auto drop-shadow-2xl"
+                />
+              </div>
+
+              {/* Floating Service Icons */}
+              <div className="absolute inset-0">
+                {floatingIcons.map((item, i) => {
+                  const IconComponent = item.icon;
+                  return (
                     <div
                       key={i}
-                      className="absolute w-full h-full border-2 border-[#f9a533]/20 rounded-full"
+                      className={`absolute ${item.position} group/icon`}
                       style={{
-                        animation: `ping ${2 + i * 0.5}s cubic-bezier(0, 0, 0.2, 1) infinite`,
-                        animationDelay: `${i * 0.4}s`,
+                        animation: `floatAround 8s ease-in-out infinite`,
+                        animationDelay: item.delay,
                       }}
-                    />
-                  ))}
-                </div>
-                <div className="relative z-20 transform scale-x-[-1] hover:scale-x-[-1.05] hover:scale-y-105 transition-transform duration-500">
-                  <img
-                    src="/freepik__the-style-is-candid-image-photography-with-natural__83762-removebg-preview.png"
-                    alt="Clapperboard"
-                    className="w-[350px] h-auto drop-shadow-2xl"
-                  />
-                </div>
-                <div className="absolute inset-0">
-                  {[
-                    { icon: Mic2, position: "top-0 left-1/4", delay: "0s", color: "text-[#f9a533]" },
-                    { icon: Languages, position: "top-1/4 right-0", delay: "0.5s", color: "text-white" },
-                    { icon: Video, position: "bottom-1/4 left-0", delay: "1s", color: "text-[#f9a533]" },
-                    { icon: Globe, position: "bottom-0 right-1/4", delay: "1.5s", color: "text-white" },
-                  ].map((item, i) => {
-                    const IconComponent = item.icon;
-                    return (
-                      <div
-                        key={i}
-                        className={`absolute ${item.position} p-3 bg-[#414042]/80 backdrop-blur-sm rounded-xl border border-[#f9a533]/20 shadow-xl`}
-                        style={{
-                          animation: `floatAround 8s ease-in-out infinite`,
-                          animationDelay: item.delay,
-                        }}
-                      >
-                        <IconComponent className={`w-6 h-6 ${item.color}`} />
+                      onMouseEnter={() => setHoveredIcon(i)}
+                      onMouseLeave={() => setHoveredIcon(null)}
+                    >
+                      <div className="relative flex items-center justify-center cursor-pointer">
+                        <div
+                          className={`relative p-3 bg-[#414042]/90 backdrop-blur-sm rounded-xl border border-[#f9a533]/30 shadow-xl transition-all duration-300 group-hover/icon:scale-125 group-hover/icon:-translate-y-2 group-hover/icon:border-[#f9a533] group-hover/icon:shadow-2xl group-hover/icon:shadow-[#f9a533]/50`}
+                        >
+                          <IconComponent className={`w-6 h-6 ${item.color} transition-transform duration-300 group-hover/icon:scale-110`} />
+                        </div>
+
+                        {/* Tooltip */}
+                        {hoveredIcon === i && (
+                          <div className="absolute z-20 top-full mt-3 left-1/2 transform -translate-x-1/2 bg-[#414042]/95 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-[#f9a533]/50 shadow-xl whitespace-nowrap animate-fadeIn">
+                            <p className="text-xs text-white font-medium">{item.description}</p>
+                          </div>
+                        )}
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -206,11 +233,14 @@ function Home() {
         @keyframes gradient {0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
         @keyframes blob {0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-50px) scale(1.1);}66%{transform:translate(-20px,20px) scale(0.9);}}
         @keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
-        @keyframes floatAround {0%,100%{transform:translate(0,0) rotate(0deg);}25%{transform:translate(10px,-10px) rotate(5deg);}50%{transform:translate(-5px,-15px) rotate(-5deg);}75%{transform:translate(-10px,5px) rotate(3deg);}}
+        @keyframes floatAround {0%,100%{transform:translate(0,0) rotate(0deg);}25%{transform:translate(15px,-15px) rotate(8deg);}50%{transform:translate(-8px,-20px) rotate(-8deg);}75%{transform:translate(-15px,8px) rotate(5deg);}}
+        @keyframes fadeIn {from{opacity:0;transform:translate(-50%, -10px);}to{opacity:1;transform:translate(-50%, 0);}}
+        @keyframes ping { 75%, 100% { transform: scale(1.8); opacity: 0; } }
         .animate-gradient{background-size:200% 200%;animation:gradient 3s ease infinite;}
         .animate-blob{animation:blob 7s infinite;}
         .animation-delay-2000{animation-delay:2s;}
         .animation-delay-4000{animation-delay:4s;}
+        .animate-fadeIn{animation:fadeIn 0.3s ease-out forwards;}
       `}</style>
     </section>
   );

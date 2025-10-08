@@ -3,6 +3,12 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap");
 
+@layer base {
+  body {
+    font-family: 'cocon-next-arabic', sans-serif;
+  }
+}
+
 /* Removed Tailwind directives and added custom CSS variables and base styles */
 :root {
   --color-primary: #f9a533;
