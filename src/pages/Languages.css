@@ -1,239 +1,206 @@
-/* --- Color Palette & Variables --- */
+/* --- الإعدادات العامة والخطوط --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 :root {
-  --bg-color: #0f172a;
-  --nucleus-bg: radial-gradient(circle, #1e293b 0%, #0f172a 70%);
-  --primary-glow: #0ea5e9;
-  --secondary-glow: #a259ff;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --planet-border: rgba(14, 165, 233, 0.4);
-  --orbit-duration: 90s;
-  --orbit-radius: 42vmin;
+  --card-width: 300px;
+  --card-height: 400px;
 }
 
-/* --- Base Styles --- */
-.languages-page {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  padding: 4rem 1rem;
-}
-
-.languages-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  z-index: 10;
-  width: 100%;
-}
-
-/* --- Starry Background Effect (No change) --- */
-@keyframes move-twink-back {
-  from { background-position: 0 0; }
-  to { background-position: -10000px 5000px; }
-}
-.stars, .stars2, .stars3 {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%; height: 100%; display: block;
-  background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
-  z-index: 0;
-}
-.stars2 {
-  background-image: url('https://www.script-tutorials.com/demos/360/images/twinkling.png');
-  animation: move-twink-back 200s linear infinite;
-}
-.stars3 {
-  background-image: url('https://www.script-tutorials.com/demos/360/images/clouds.png');
-  animation: move-twink-back 150s linear infinite;
-}
-
-/* --- Orbit System --- */
-@keyframes orbit-rotation {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.languages-orbit {
-  position: relative;
-  width: 90vmin; height: 90vmin;
-  max-width: 800px; max-height: 800px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: orbit-rotation var(--orbit-duration) linear infinite;
-  transition: transform 0.5s ease-out;
-}
-
-.languages-container:hover .languages-orbit {
-  animation-play-state: paused;
-}
-
-/* --- Central Nucleus (Hero Section) --- */
-.hero-nucleus {
-  position: absolute;
-  width: 50%; height: 50%;
-  background: var(--nucleus-bg);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 1.5rem;
-  box-shadow: 0 0 25px 8px rgba(14, 165, 233, 0.2), inset 0 0 20px rgba(14, 165, 233, 0.3);
-  animation: pulse 4s infinite ease-in-out;
-  /* CHANGE: REMOVED the counter-rotation animation */
-  z-index: 20; /* CHANGE: Ensure nucleus is ALWAYS ON TOP */
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 25px 8px rgba(14, 165, 233, 0.2), inset 0 0 20px rgba(14, 165, 233, 0.3); }
-  50% { transform: scale(1.03); box-shadow: 0 0 35px 12px rgba(14, 165, 233, 0.3), inset 0 0 25px rgba(14, 165, 233, 0.4); }
-  100% { transform: scale(1); box-shadow: 0 0 25px 8px rgba(14, 165, 233, 0.2), inset 0 0 20px rgba(14, 165, 233, 0.3); }
-}
-
-/* NEW: Styles for your logo */
-.nucleus-logo {
-  width: 3.5rem; /* Adjust size as needed */
-  height: auto;
-  margin-bottom: 0.75rem;
-}
-
-.nucleus-title {
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+body {
   margin: 0;
-  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.title-highlight {
-  color: var(--primary-glow);
-  font-weight: 700;
-}
-.nucleus-subtitle {
-  font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-  color: var(--text-secondary);
-  margin: 0.5rem 0 1.25rem 0;
-  max-width: 85%;
-}
-.nucleus-stats {
+
+/* --- تصميم الصفحة الرئيسي --- */
+.languages-page {
   display: flex;
-  gap: 0.75rem;
   align-items: center;
-}
-.stat-item { text-align: center; }
-.stat-number { font-size: clamp(1rem, 2.2vw, 1.25rem); font-weight: 700; color: var(--primary-glow); }
-.stat-label { font-size: clamp(0.6rem, 1.4vw, 0.7rem); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;}
-.stat-divider { width: 1px; height: 25px; background: var(--text-secondary); opacity: 0.3; }
-
-/* --- Language Planets --- */
-.language-planet {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 12%; height: 12%;
-  margin: -6%;
-  animation: fade-in 0.5s ease-out backwards;
-  animation-delay: var(--delay);
-  z-index: 10; /* CHANGE: Ensure planets are BEHIND nucleus */
-}
-
-@keyframes fade-in {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.planet-inner {
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  background-color: #1e293b;
-  border: 2px solid var(--planet-border);
-  display: flex;
   justify-content: center;
-  align-items: center;
+  min-height: 100vh;
+  background-color: #414042; /* تعديل: تم استخدام اللون الرئيسي الجديد للخلفية */
+  color: #ffffff; /* تعديل: تم استخدام اللون الأبيض للنصوص الرئيسية */
   overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
-  cursor: pointer;
-  /* This reverse animation is KEPT to keep flags upright */
-  animation: orbit-rotation var(--orbit-duration) linear infinite reverse;
+  padding: 2rem;
 }
 
-.language-planet:hover .planet-inner {
-  transform: scale(1.6);
-  box-shadow: 0 0 30px var(--primary-glow);
-  z-index: 100; /* Bring hovered planet to the very top */
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* --- القسم الأيسر (النصوص) --- */
+.hero-text-container {
+  flex: 1;
+  max-width: 450px;
+}
+
+.premium-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f9a533; /* تعديل: تم استخدام اللون البرتقالي */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #ffffff; /* تعديل: العنوان باللون الأبيض لتباين أفضل */
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: #c0c0c0; /* تعديل: لون أفتح قليلاً للنص الفرعي */
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.more-tutorials-link {
+  color: #c0c0c0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.more-tutorials-link:hover {
+  color: #f9a533; /* تعديل: تغيير اللون عند التأشير */
+}
+
+/* --- القسم الأيمن (البطاقات) --- */
+.card-carousel-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1500px;
+}
+
+.cards-wrapper {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  transform-style: preserve-3d;
+}
+
+/* --- تصميم البطاقة (الجزء الأهم) --- */
+.language-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  
+  /* تعديل: تم تقليل الشفافية بشكل كبير وتغيير اللون الأساسي للبطاقة */
+  background: rgba(0, 0, 0, 0.4); 
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* تعديل: جعلنا الإطار أكثر وضوحاً */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+  transform: 
+    rotateY(calc(var(--offset) * 40deg))
+    scale(calc(1 - var(--abs-offset) * 0.2))
+    translateX(calc(var(--direction) * -50%));
+  
+  opacity: calc(1 - var(--abs-offset) * 0.5);
+  z-index: calc(100 - var(--abs-offset));
+  pointer-events: auto;
+}
+
+.language-card[style*="--abs-offset: 3"],
+.language-card[style*="--abs-offset: 4"] {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.language-card::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 40px;
+  background: var(--glow-color);
+  filter: blur(35px);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.language-card[style*="--offset: 0"]::after {
+  opacity: 0.5;
+}
+
+/* --- محتوى البطاقة الداخلي --- */
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
 .language-flag-image {
-  width: 100%; height: 100%;
-  object-fit: cover;
+  width: 60px;
   border-radius: 50%;
-  transition: opacity 0.4s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.language-planet:hover .language-flag-image {
-  opacity: 0.1;
+.language-code {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
 }
 
 .language-info {
-  position: absolute;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.language-planet:hover .language-info {
-  opacity: 1;
-  transform: translateY(0);
+  flex-grow: 1;
 }
 
 .language-name-large {
-  font-weight: 600;
-  font-size: clamp(0.8rem, 1.8vw, 1.1rem);
-  color: var(--text-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
 }
+
 .language-native {
-  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
-  color: var(--primary-glow);
+  font-size: 1.2rem;
+  color: #c0c0c0;
 }
 
-/* --- Positioning Planets on the Orbit (No change) --- */
-.language-planet:nth-child(1) { transform: rotate(0deg) translateY(calc(-1 * var(--orbit-radius))); }
-.language-planet:nth-child(2) { transform: rotate(45deg) translateY(calc(-1 * var(--orbit-radius))); }
-.language-planet:nth-child(3) { transform: rotate(90deg) translateY(calc(-1 * var(--orbit-radius))); }
-.language-planet:nth-child(4) { transform: rotate(135deg) translateY(calc(-1 * var(--orbit-radius))); }
-.language-planet:nth-child(5) { transform: rotate(180deg) translateY(calc(-1 * var(--orbit-radius))); }
-.language-planet:nth-child(6) { transform: rotate(225deg) translateY(calc(-1 * var(--orbit-radius))); }
-.language-planet:nth-child(7) { transform: rotate(270deg) translateY(calc(-1 * var(--orbit-radius))); }
-.language-planet:nth-child(8) { transform: rotate(315deg) translateY(calc(-1 * var(--orbit-radius))); }
-
-
-/* --- More Languages Text (No change) --- */
-.more-languages-text {
-  display: none; /* Hide this element for now to focus on the orbit */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* تعديل: إطار داخلي أوضح */
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #c0c0c0;
 }
 
-/* --- Responsive Adjustments (No major change) --- */
-@media (max-width: 768px) {
-  .languages-orbit {
-    width: 95vmin;
-    height: 95vmin;
-  }
-  .hero-nucleus {
-    width: 60%;
-    height: 60%;
-  }
-  .nucleus-stats { display: none; }
-  .nucleus-subtitle { display: none; }
+.pro-badge {
+  background-color: #f9a533; /* تعديل: استخدام اللون البرتقالي للشارة */
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #414042; /* تعديل: لون النص داكن للتباين */
 }
