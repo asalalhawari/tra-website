@@ -30,7 +30,10 @@ const teamMembers = [
 
 export default function OurTeam() {
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-slate-50 via-gray-100 to-slate-200 min-h-screen relative overflow-hidden">
+    <section
+      id="team" // ✅ اضفنا ID للسكشن
+      className="py-20 px-6 bg-gradient-to-br from-slate-50 via-gray-100 to-slate-200 min-h-screen relative overflow-hidden"
+    >
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#f9a533]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#414042]/5 rounded-full blur-3xl"></div>

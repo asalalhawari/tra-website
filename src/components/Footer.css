@@ -1,8 +1,16 @@
+/* Footer.css - كود مصغر ونظيف */
+
+:root {
+  --color-primary: #f9a533; /* تعريف اللون البرتقالي لسهولة استخدامه */
+}
+
 .footer {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
   color: white;
   position: relative;
   overflow: hidden;
+  /* تم تقليل الـ padding الرأسي على الفوتر بالكامل */
+  padding: 20px 0;
 }
 
 .footer-pattern {
@@ -18,15 +26,18 @@
   z-index: 10;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 4rem 1rem;
+  /* تم تقليل الـ padding الرأسي للحاوية من 4rem إلى 2.5rem */
+  padding: 2.5rem 1rem;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
+  /* تم تقليل تباعد الأعمدة من 3rem إلى 2rem */
+  gap: 2rem;
+  /* تم تقليل المسافة السفلية والحد السفلي */
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid rgba(249, 165, 51, 0.3);
 }
 
@@ -42,6 +53,7 @@
   }
 }
 
+/* قسم الشعار والوصف */
 .footer-logo-section {
   animation: fadeInUp 0.6s ease-out;
 }
@@ -50,30 +62,28 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  /* تم تقليل المسافة السفلية */
+  margin-bottom: 0.75rem;
 }
 
+/* تصغير حجم الشعار */
 .footer-logo-icon {
-  width: 7.5rem;
+  width: 6rem; /* تم تصغيره من 7.5rem إلى 6rem */
   height: auto;
-}
-
-.footer-logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--color-primary);
 }
 
 .footer-description {
   color: #d1d5db;
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  /* تم تقليل المسافة السفلية وحجم الخط */
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  font-size: 0.875rem; /* تصغير حجم الخط */
 }
 
 .footer-tagline {
   color: #9ca3af;
   font-style: italic;
-  font-size: 0.875rem;
+  font-size: 0.8rem; /* تصغير حجم الخط */
 }
 
 .footer-section {
@@ -92,13 +102,16 @@
   animation-delay: 0.3s;
 }
 
+/* عناوين الأقسام */
 .footer-title {
-  font-size: 1.125rem;
+  font-size: 1rem; /* تم تصغيره من 1.125rem */
   font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 1.5rem;
+  color: var(--color-primary); /* استخدام لون البرتقالي */
+  /* تم تقليل المسافة السفلية */
+  margin-bottom: 1rem;
 }
 
+/* الروابط */
 .footer-links {
   list-style: none;
   padding: 0;
@@ -106,7 +119,8 @@
 }
 
 .footer-links li {
-  margin-bottom: 0.75rem;
+  /* تم تقليل المسافة بين الروابط */
+  margin-bottom: 0.5rem;
 }
 
 .footer-link {
@@ -114,64 +128,104 @@
   color: #d1d5db;
   transition: all 0.3s ease;
   display: inline-block;
+  font-size: 0.85rem; /* تصغير حجم الخط */
 }
 
 .footer-link:hover {
   color: var(--color-primary);
-  transform: translateX(0.5rem);
+  transform: translateX(0.25rem); /* تقليل حركة الانتقال */
 }
 
+/* معلومات الاتصال */
 .footer-contact-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 0.5rem; /* تقليل المسافة بين الأيقونة والنص */
   color: #d1d5db;
-  margin-bottom: 1rem;
+  /* تم تقليل المسافة السفلية */
+  margin-bottom: 0.75rem;
 }
 
 .footer-contact-icon {
   color: var(--color-primary);
-  font-size: 1.25rem;
-  margin-top: 0.25rem;
+  font-size: 1rem; /* تم تصغيره من 1.25rem */
+  margin-top: 0.15rem; /* تعديل طفيف للمحاذاة */
   flex-shrink: 0;
 }
 
 .footer-contact-text {
-  font-size: 0.875rem;
+  font-size: 0.85rem; /* تصغير حجم الخط */
 }
 
+/* روابط التواصل الاجتماعي */
 .footer-social {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
+  gap: 0.6rem; /* تقليل المسافة بين الأيقونات */
+  margin-top: 1rem; /* تقليل المسافة العلوية */
 }
 
 .footer-social-link {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem; /* تصغير حجم الأيقونة من 2.5rem */
+  height: 2rem; /* تصغير حجم الأيقونة من 2.5rem */
   background-color: rgba(249, 165, 51, 0.2);
-  border-radius: 0.5rem;
+  border-radius: 0.4rem; /* تقليل استدارة الحواف */
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
   transition: all 0.3s ease;
+  font-size: 1rem; /* تصغير حجم الأيقونة */
 }
 
 .footer-social-link:hover {
-  transform: scale(1.1) translateY(-0.25rem);
+  transform: scale(1.1); /* تقليل تأثير التكبير */
   background-color: var(--color-primary);
   color: white;
 }
 
+/* حقوق النشر */
 .footer-bottom {
   text-align: center;
   animation: fadeIn 0.6s ease-out 0.4s both;
+  /* تم تقليل المسافة العلوية */
+  margin-top: 1.5rem;
 }
 
 .footer-copyright {
   color: #9ca3af;
-  font-size: 0.875rem;
+  font-size: 0.75rem; /* تصغير حجم الخط */
+}
+
+/* Media Queries لتصغير أكبر على الأجهزة الصغيرة */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 2rem 1rem;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .footer-logo-icon {
+    width: 5.5rem;
+  }
+
+  .footer-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-link,
+  .footer-contact-text,
+  .footer-description {
+    font-size: 0.8rem;
+  }
+
+  .footer-contact-item {
+    margin-bottom: 0.6rem;
+  }
 }
 
 @keyframes fadeInUp {

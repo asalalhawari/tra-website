@@ -21,9 +21,7 @@ function Languages() {
 
   return (
     <section id="languages" className="languages-page">
-      {/* تم إزالة النجوم لأن التصميم الجديد لا يحتاجها */}
       <div className="content-wrapper">
-        
         {/* القسم الأيسر: النصوص */}
         <div className="hero-text-container">
           <p className="premium-label">GLOBAL LANGUAGES</p>
@@ -33,7 +31,6 @@ function Languages() {
           <p className="hero-subtitle">
             Once you've completed the courses, learn from our quick design and code tutorials to strengthen your knowledge.
           </p>
-         
         </div>
 
         <div className="card-carousel-container">

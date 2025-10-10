@@ -73,7 +73,10 @@ function Industries() {
   ];
 
   return (
-    <section id="industries" className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <section
+      id="industries"
+      className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden"
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -111,60 +114,7 @@ function Industries() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          {/* Play Button Icon with Power Ring */}
-          <div className="flex justify-center mb-8">
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              whileInView={{ scale: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 15,
-                delay: 0.2,
-              }}
-              className="relative"
-            >
-              {/* Outer Power Ring */}
-              <motion.div
-                animate={{
-                  rotate: 360,
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-0 w-24 h-24"
-              >
-                <div className="relative w-full h-full">
-                  <Power className="w-24 h-24 text-gray-900 opacity-20" strokeWidth={1.5} />
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1 w-1 h-4 bg-[#f9a533] rounded-full" />
-                </div>
-              </motion.div>
-
-              {/* Play Button */}
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                className="relative z-10 w-24 h-24 bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl flex items-center justify-center shadow-2xl"
-              >
-                <Play className="w-10 h-10 text-[#f9a533] fill-[#f9a533] ml-1" />
-              </motion.div>
-
-              {/* Decorative Lines */}
-              <motion.div
-                animate={{ scaleX: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-[#f9a533] to-transparent opacity-30"
-              />
-            </motion.div>
-          </div>
-
-          <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6">
-            Industries We Serve
-          </h2>
-
-          {/* Animated Underline with Play Symbol */}
+          {/* Decorative Image Above Title */}
           <div className="flex items-center justify-center gap-2 mb-6">
             <motion.div
               initial={{ width: 0 }}
@@ -173,13 +123,18 @@ function Industries() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="h-1 bg-gradient-to-r from-transparent to-[#f9a533]"
             />
-            <motion.div
+            
+            {/* Image بدل المثلث */}
+            <motion.img
+              src="/logo7.png" // استبدل هذا بالمسار الصحيح للصورة عندك
+              alt="decorative"
               initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: "spring", delay: 0.5 }}
-              className="w-3 h-3 bg-[#f9a533] rotate-45"
+  whileInView={{ scale: 1 }}
+  viewport={{ once: true }}
+  transition={{ type: "spring", delay: 0.5 }}
+  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
             />
+
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: 80 }}
@@ -188,6 +143,10 @@ function Industries() {
               className="h-1 bg-gradient-to-l from-transparent to-[#f9a533]"
             />
           </div>
+
+          <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6">
+            Industries We Serve
+          </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             We provide our services to a wide range of media and artistic sectors
@@ -265,9 +224,6 @@ function Industries() {
                 <p className="text-gray-600 text-sm leading-relaxed">
                   {industry.description}
                 </p>
-
-                {/* Bottom Accent - Play Symbol */}
-              
               </div>
 
               {/* Corner Decorative Element */}

@@ -52,7 +52,7 @@ function AnimatedCounter({ end, duration = 2000, suffix = "" }) {
   }, [isVisible, end, duration]);
 
   return (
-    <h3 ref={counterRef} className="text-4xl font-bold text-gray-900 mb-2">
+    <h3 ref={counterRef} className="text-4xl font-bold text-white mb-2">
       {count}
       {suffix}
     </h3>
@@ -73,7 +73,13 @@ function ValuesPatternImage() {
 
 function About() {
   return (
-    <section id="about" className="w-full bg-white py-20 px-4 relative overflow-hidden">
+    <section
+      id="about"
+      className="w-full py-20 px-4 relative overflow-hidden 
+                 bg-gradient-to-br from-[#414042] via-[#2a2a2b] to-[#414042]
+                 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)]
+                 bg-[size:4rem_4rem]"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Hero Section with Images */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-24 relative">
@@ -110,17 +116,17 @@ function About() {
               <p className="text-[#f9a533] font-semibold text-lg mb-3">
                 About Us
               </p>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6 text-left">
+              <h2 className="text-4xl font-bold text-white mb-6 text-left">
                 The Art of Audiovisual Translation
               </h2>
-              <p className="text-gray-700 text-lg leading-relaxed mb-4">
+              <p className="text-gray-300 text-lg leading-relaxed mb-4">
                 <strong>On Point Audiovisual Translation Services</strong> is a
                 specialized company offering audiovisual translation solutions
                 in creative and dramatic fields. We see translation as an art
                 and cultural bridge that brings dramatic works closer to
                 diverse audiences worldwide.
               </p>
-              <p className="text-gray-700 text-lg leading-relaxed mb-8">
+              <p className="text-gray-300 text-lg leading-relaxed mb-8">
                 Our team combines expertise in specialized translation with a
                 background in dramatic writing and scenography, ensuring every
                 message reaches audiences with depth and impact.
@@ -128,20 +134,7 @@ function About() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8">
-              <div>
-                <AnimatedCounter end={500} suffix="+" />
-                <p className="text-gray-600 text-sm">Completed Projects</p>
-              </div>
-              <div>
-                <AnimatedCounter end={200} suffix="+" />
-                <p className="text-gray-600 text-sm">Happy Clients</p>
-              </div>
-              <div>
-                <AnimatedCounter end={15} suffix="+" />
-                <p className="text-gray-600 text-sm">Years Experience</p>
-              </div>
-            </div>
+           
           </div>
         </div>
 
@@ -150,14 +143,14 @@ function About() {
           {/* Vision */}
           <div className="relative rounded-2xl p-[2px] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-[#f9a533] via-pink-500 to-purple-600 animate-moveBorder bg-[length:300%_300%]" />
-            <div className="relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm">
+            <div className="relative bg-gradient-to-br from-[#1e1e1f] to-[#2b2b2c] rounded-2xl p-8 shadow-sm">
               <div className="w-14 h-14 rounded-xl bg-[#f9a533] flex items-center justify-center mb-6">
                 <Globe className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 Our Vision
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed">
                 To become the leading partner in the region for audiovisual
                 translation of dramatic and creative works, contributing to the
                 global reach of Arab and international productions with
@@ -169,14 +162,14 @@ function About() {
           {/* Mission */}
           <div className="relative rounded-2xl p-[2px] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-[#f9a533] via-pink-500 to-purple-600 animate-moveBorder bg-[length:300%_300%]" />
-            <div className="relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm">
+            <div className="relative bg-gradient-to-br from-[#1e1e1f] to-[#2b2b2c] rounded-2xl p-8 shadow-sm">
               <div className="w-14 h-14 rounded-xl bg-[#f9a533] flex items-center justify-center mb-6">
                 <Star className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 Our Mission
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed">
                 Delivering world-class audiovisual translation services that
                 preserve the essence of the original text and highlight its
                 artistic value, through a professional team combining linguistic
@@ -189,10 +182,10 @@ function About() {
         {/* Our Values */}
         <div className="mb-20 relative">
           <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-gray-900 mb-4">
+            <h3 className="text-4xl font-bold text-white mb-4">
               Our Values
             </h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               The principles that guide everything we do
             </p>
           </div>

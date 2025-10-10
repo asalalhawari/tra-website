@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,15 +22,37 @@ function Navbar() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
       setMenuOpen(false)
+      setOpenDropdown(null)
     }
   }
 
   const navLinks = [
     { id: "home", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "services", label: "Services" },
-    { id: "portfolio", label: "Portfolio" },
-    { id: "industries", label: "Industries" },
+    {
+      label: "About Us",
+      children: [
+        { id: "vision", label: "Our Vision" },
+        { id: "mission", label: "Our Mission" },
+        { id: "values", label: "Our Values" },
+      ],
+    },
+    {
+      label: "Services",
+      children: [
+        { id: "industries", label: "Industries We Serve" },
+        { id: "languages", label: "Our Languages" },
+      ],
+    },
+    {
+      label: "Insights",
+      children: [
+        { id: "team", label: "Our Team" },
+        { id: "approach", label: "Our Approach" },
+        { id: "achievements", label: "Our Achievements" },
+        { id: "portfolio", label: "Our Portfolio" },
+        { id: "clients", label: "Our Clients" },
+      ],
+    },
     { id: "contact", label: "Contact" },
   ]
 
@@ -56,22 +79,43 @@ function Navbar() {
           {/* Desktop Navigation */}
           <ul className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link, index) => (
-              <motion.li
-                key={link.id}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <button
-                  onClick={() => scrollToSection(link.id)}
-                  className={`text-base font-medium transition-all duration-300 hover:text-primary relative group ${
-                    scrolled ? "text-dark" : "text-white"
-                  }`}
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                </button>
-              </motion.li>
+              <li key={index} className="relative group">
+                {!link.children ? (
+                  <button
+                    onClick={() => scrollToSection(link.id)}
+                    className={`text-base font-medium transition-all duration-300 hover:text-primary ${
+                      scrolled ? "text-dark" : "text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      className={`text-base font-medium transition-all duration-300 hover:text-primary flex items-center ${
+                        scrolled ? "text-dark" : "text-white"
+                      }`}
+                    >
+                      {link.label}
+                      {/* مثلث صغير فقط للعناصر الرئيسية التي لها children */}
+                      <span className="text-xs ml-1 text-gray-400">▼</span>
+                    </button>
+                    {/* Dropdown with borders */}
+                    <ul className="absolute hidden group-hover:block bg-white text-dark shadow-lg rounded-md mt-2 w-56 border p-1">
+                      {link.children.map((child) => (
+                        <li key={child.label} className="border border-gray-200 rounded-md m-1">
+                          <button
+                            onClick={() => scrollToSection(child.id)}
+                            className="block w-full text-left px-4 py-2 hover:bg-primary hover:text-white transition"
+                          >
+                            {child.label}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </li>
             ))}
           </ul>
 
@@ -110,25 +154,50 @@ function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-dark z-40 lg:hidden"
           >
-            <div className="flex flex-col items-center justify-center h-full space-y-8">
-              {navLinks.map((link, index) => (
-                <motion.button
-                  key={link.id}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => scrollToSection(link.id)}
-                  className="text-white text-2xl font-medium hover:text-primary transition-colors duration-300"
-                >
-                  {link.label}
-                </motion.button>
+            <div className="flex flex-col items-center justify-center h-full space-y-6 px-6">
+              {navLinks.map((link) => (
+                <div key={link.label} className="w-full">
+                  {!link.children ? (
+                    <button
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-white text-xl font-medium hover:text-primary transition-colors duration-300 w-full text-left"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <div>
+                      <button
+                        onClick={() =>
+                          setOpenDropdown(openDropdown === link.label ? null : link.label)
+                        }
+                        className="text-white text-xl font-medium hover:text-primary transition-colors duration-300 w-full text-left flex items-center justify-between"
+                      >
+                        {link.label}
+                        {/* مثلث صغير فقط للعناصر الرئيسية التي لها children */}
+                        <span className="text-xs text-gray-400 ml-2">▼</span>
+                      </button>
+                      {openDropdown === link.label && (
+                        <div className="ml-4 mt-2 space-y-2">
+                          {link.children.map((child) => (
+                            <button
+                              key={child.label}
+                              onClick={() => scrollToSection(child.id)}
+                              className="block w-full text-left px-4 py-2 border border-gray-700 rounded-md hover:bg-primary hover:text-white transition"
+                            >
+                              {child.label}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               ))}
               <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection("contact")}
-                className="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all duration-300 shadow-lg"
+                className="mt-6 bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all duration-300 shadow-lg"
               >
                 Get Started
               </motion.button>

@@ -146,11 +146,7 @@ function Home() {
             </div>
 
             {/* Stats Counters */}
-            <div className="grid grid-cols-3 gap-6 py-6">
-              <Counter target={500} label="Projects" />
-              <Counter target={50} label="Languages" />
-              <Counter target={100} label="Quality" />
-            </div>
+           
           </div>
 
           {/* Right Content */}
