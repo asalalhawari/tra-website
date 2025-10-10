@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiArrowLeft, HiArrowRight, HiPlay } from 'react-icons/hi';
-import "./Portfolio.css"; // احتفظ بالملف إذا عندك ستايلات إضافية
 
 // بيانات المشاريع
 const projects = [

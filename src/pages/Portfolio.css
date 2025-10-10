@@ -1,194 +1,160 @@
+/* ---------------- Portfolio Carousel Responsive ---------------- */
 .portfolio-section {
-  padding: 5rem 0;
-  background: linear-gradient(to bottom, #f9fafb, white);
+  padding: 5rem 1rem;
+  background-color: #141416;
+  color: white;
 }
 
-.portfolio-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.portfolio-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.portfolio-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--color-dark);
-  margin-bottom: 1rem;
-}
-
-@media (min-width: 640px) {
-  .portfolio-title {
-    font-size: 3rem;
-  }
-}
-
-.portfolio-divider {
-  width: 6rem;
-  height: 0.25rem;
-  background-color: var(--color-primary);
-  margin: 0 auto 1.5rem;
-}
-
-.portfolio-description {
-  font-size: 1.25rem;
-  color: #4b5563;
-  max-width: 48rem;
-  margin: 0 auto;
-}
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .portfolio-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.portfolio-card {
-  background: white;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  /* Fixed height for consistency */
-  display: flex;
-  flex-direction: column;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-}
-
-.portfolio-image-wrapper {
+.carousel-wrapper {
   position: relative;
-  /* Fixed height for all images */
-  height: 16rem;
+  width: 100%;
+  height: 650px; /* default desktop height */
   overflow: hidden;
 }
 
-.portfolio-image {
+.card-nft {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+
+/* الصورة داخل البطاقة */
+.card-nft img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
 }
 
-.portfolio-card:hover .portfolio-image {
-  transform: scale(1.1);
-}
-
-.portfolio-image-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--color-dark), rgba(0, 0, 0, 0.5), transparent);
-  opacity: 0.6;
-}
-
-.portfolio-category {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: var(--color-primary);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.portfolio-play-button {
+/* Overlay & Play button */
+.card-nft .overlay {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  align-items: center;
+  transition: all 0.3s ease;
 }
 
-.portfolio-card:hover .portfolio-play-button {
-  opacity: 1;
+/* Overlay effect للبطاقة المركزية */
+.card-nft.center .overlay {
+  background: rgba(0,0,0,0.2);
 }
 
-.portfolio-play-icon-wrapper {
-  width: 4rem;
-  height: 4rem;
-  background-color: var(--color-primary);
+.card-nft:not(.center) .overlay {
+  background: rgba(0,0,0,0.5);
+}
+
+.card-nft .play-btn {
+  width: 56px;
+  height: 56px;
+  background: rgba(255,255,255,0.2);
   border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
 }
 
-.portfolio-play-icon {
-  font-size: 1.875rem;
-  color: white;
-  margin-left: 0.25rem;
+.card-nft.center .play-btn {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.portfolio-content {
-  padding: 1.5rem;
-  /* Flex grow to fill remaining space */
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.card-nft:not(.center) .play-btn {
+  opacity: 0;
+  transform: scale(0.75);
 }
 
-.portfolio-card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: var(--color-dark);
-  margin-bottom: 0.75rem;
-  transition: color 0.3s ease;
+/* Navigation Buttons */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  background: rgba(255,255,255,0.1);
+  backdrop-blur: 5px;
+  border-radius: 50%;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.portfolio-card:hover .portfolio-card-title {
-  color: var(--color-primary);
+.carousel-nav:hover {
+  background: rgba(255,255,255,0.2);
 }
 
-.portfolio-card-description {
-  color: #4b5563;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  /* Flex grow to push stats to bottom */
-  flex: 1;
+.carousel-nav.left {
+  left: 1rem;
 }
 
-.portfolio-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  /* Margin top auto to stick to bottom */
-  margin-top: auto;
+.carousel-nav.right {
+  right: 1rem;
 }
 
-.portfolio-stat {
-  text-align: center;
+/* ---------------- Media Queries ---------------- */
+@media (max-width: 1024px) {
+  .carousel-wrapper {
+    height: 550px;
+  }
+
+  .card-nft {
+    width: 300px;
+    height: 420px;
+  }
 }
 
-.portfolio-stat-value {
-  font-size: 1.125rem;
-  font-weight: bold;
-  color: var(--color-primary);
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    height: 480px;
+  }
+
+  .card-nft {
+    width: 240px;
+    height: 360px;
+  }
+
+  .carousel-nav {
+    padding: 0.6rem;
+    font-size: 1.5rem;
+  }
 }
 
-.portfolio-stat-label {
-  font-size: 0.75rem;
-  color: #6b7280;
+@media (max-width: 480px) {
+  .carousel-wrapper {
+    height: 380px;
+  }
+
+  .card-nft {
+    width: 180px;
+    height: 280px;
+  }
+
+  .carousel-nav {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .card-nft .play-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .carousel-wrapper {
+    height: 300px;
+  }
+
+  .card-nft {
+    width: 150px;
+    height: 230px;
+  }
+
+  .card-nft .play-btn {
+    width: 36px;
+    height: 36px;
+  }
 }

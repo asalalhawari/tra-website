@@ -204,3 +204,288 @@ body {
   font-weight: 600;
   color: #414042; /* تعديل: لون النص داكن للتباين */
 }
+/* --- الإعدادات العامة والخطوط --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --card-width: 300px;
+  --card-height: 400px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- تصميم الصفحة الرئيسي --- */
+.languages-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #414042;
+  color: #ffffff;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap; /* للسماح بالانتقال للصف عند الشاشات الصغيرة */
+}
+
+/* --- القسم الأيسر (النصوص) --- */
+.hero-text-container {
+  flex: 1 1 350px;
+  max-width: 450px;
+}
+
+.premium-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f9a533;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: #c0c0c0;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.more-tutorials-link {
+  color: #c0c0c0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.more-tutorials-link:hover {
+  color: #f9a533;
+}
+
+/* --- القسم الأيمن (البطاقات) --- */
+.card-carousel-container {
+  flex: 1 1 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1500px;
+  min-width: 280px;
+}
+
+.cards-wrapper {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  transform-style: preserve-3d;
+}
+
+/* --- تصميم البطاقة (الجزء الأهم) --- */
+.language-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+  transform: 
+    rotateY(calc(var(--offset) * 40deg))
+    scale(calc(1 - var(--abs-offset) * 0.2))
+    translateX(calc(var(--direction) * -50%));
+  
+  opacity: calc(1 - var(--abs-offset) * 0.5);
+  z-index: calc(100 - var(--abs-offset));
+  pointer-events: auto;
+}
+
+.language-card[style*="--abs-offset: 3"],
+.language-card[style*="--abs-offset: 4"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.language-card::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 40px;
+  background: var(--glow-color);
+  filter: blur(35px);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.language-card[style*="--offset: 0"]::after {
+  opacity: 0.5;
+}
+
+/* --- محتوى البطاقة الداخلي --- */
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.language-flag-image {
+  width: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.language-code {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+}
+
+.language-info {
+  flex-grow: 1;
+}
+
+.language-name-large {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.language-native {
+  font-size: 1.2rem;
+  color: #c0c0c0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #c0c0c0;
+}
+
+.pro-badge {
+  background-color: #f9a533;
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #414042;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  :root {
+    --card-width: 250px;
+    --card-height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  :root {
+    --card-width: 220px;
+    --card-height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --card-width: 180px;
+    --card-height: 280px;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+
+  .language-flag-image {
+    width: 50px;
+  }
+
+  .language-code {
+    font-size: 1rem;
+  }
+
+  .language-name-large {
+    font-size: 1.5rem;
+  }
+
+  .language-native {
+    font-size: 1rem;
+  }
+}
